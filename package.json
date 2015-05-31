@@ -1,0 +1,35 @@
+{
+  "name": "yall",
+  "version": "0.0.1",
+  "description": "yet another logging logger",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "lab -a code -v -L -t 75"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simon-p-r/yall.git"
+  },
+  "keywords": [
+    "logging",
+    "console"
+  ],
+  "author": "simon-p-r",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/simon-p-r/yall/issues"
+  },
+  "homepage": "https://github.com/simon-p-r/yall#readme",
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "hoek": "^2.14.0",
+    "joi": "^6.4.3",
+    "moment": "^2.10.3"
+  },
+  "devDependencies": {
+    "code": "^1.4.0",
+    "lab": "^5.9.0",
+    "std-mocks": "^1.0.0",
+    "test-console": "^0.7.1"
+  }
+}
