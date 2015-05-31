@@ -6,8 +6,6 @@ var Moment = require('moment');
 var Logger = require('../lib/index.js');
 var stdMocks = require('std-mocks');
 
-// var Stdout = require('test-console').stdout;
-// var Stderr = require('test-console').stderr;
 
 // Set-up lab
 var lab = exports.lab = Lab.script();

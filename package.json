@@ -29,7 +29,6 @@
   "devDependencies": {
     "code": "^1.4.0",
     "lab": "^5.9.0",
-    "std-mocks": "^1.0.0",
-    "test-console": "^0.7.1"
+    "std-mocks": "^1.0.0"
   }
 }
