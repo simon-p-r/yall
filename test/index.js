@@ -65,7 +65,7 @@ describe('initialise', function () {
         var time = Moment().format('HH:mm DD-MM-YYYY');
         stdMocks.use();
         logger.debug('hello');
-        process.stdout.write('\u001b[94m[DEBUG] - [' + time + '] - hello\u001b[39m\n');
+        process.stdout.write('\u001b[36m[DEBUG] - [' + time + '] - hello\u001b[39m\n');
         logger.info('hello');
         process.stdout.write('\u001b[37m[INFO] - [' + time + '] - hello\u001b[39m\n');
         logger.warn('hello');
