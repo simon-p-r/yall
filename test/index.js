@@ -57,7 +57,7 @@ describe('initialise', function () {
 
     });
 
-    it('should write debug message to console', function (done) {
+    it('should write messages to console', function (done) {
 
         var logger = new Logger({
             timestamp: 'HH:mm DD-MM-YYYY'
@@ -66,57 +66,18 @@ describe('initialise', function () {
         stdMocks.use();
         logger.debug('hello');
         process.stdout.write('\u001b[94m[DEBUG] - [' + time + '] - hello\u001b[39m\n');
-        stdMocks.restore();
-        var test = stdMocks.flush();
-        expect(test.stdout[0]).to.equal(test.stdout[1]);
-        done();
-
-    });
-
-    it('should write info message to console', function (done) {
-
-        var logger = new Logger({
-            timestamp: 'HH:mm DD-MM-YYYY'
-        });
-        var time = Moment().format('HH:mm DD-MM-YYYY');
-        stdMocks.use();
         logger.info('hello');
         process.stdout.write('\u001b[37m[INFO] - [' + time + '] - hello\u001b[39m\n');
-        stdMocks.restore();
-        var test = stdMocks.flush();
-        expect(test.stdout[0]).to.equal(test.stdout[1]);
-        done();
-
-    });
-
-    it('should write warn message to console', function (done) {
-
-        var logger = new Logger({
-            timestamp: 'HH:mm DD-MM-YYYY'
-        });
-        var time = Moment().format('HH:mm DD-MM-YYYY');
-        stdMocks.use();
         logger.warn('hello');
-        process.stdout.write('\u001b[33m[WARN] - [' + time + '] - hello\u001b[39m\n');
-        stdMocks.restore();
-        var test = stdMocks.flush();
-        expect(test.stdout[0]).to.equal(test.stdout[1]);
-        done();
-
-    });
-
-    it('should write error message to console', function (done) {
-
-        var logger = new Logger({
-            timestamp: 'HH:mm DD-MM-YYYY'
-        });
-        var time = Moment().format('HH:mm DD-MM-YYYY');
-        stdMocks.use();
+        process.stderr.write('\u001b[33m[WARN] - [' + time + '] - hello\u001b[39m\n');
         logger.error('hello');
-        process.stderr.write('\u001b[33m[ERROR] - [' + time + '] - hello\u001b[39m\n');
+        process.stderr.write('\u001b[31m[ERROR] - [' + time + '] - hello\u001b[39m\n');
         stdMocks.restore();
         var test = stdMocks.flush();
         expect(test.stdout[0]).to.equal(test.stdout[1]);
+        expect(test.stdout[2]).to.equal(test.stdout[3]);
+        expect(test.stderr[0]).to.equal(test.stderr[1]);
+        expect(test.stdout[2]).to.equal(test.stdout[3]);
         done();
 
     });
