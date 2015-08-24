@@ -1,3 +1,5 @@
 node_modules
 test.js
 .idea
+npm-debug.log
+coverage.html

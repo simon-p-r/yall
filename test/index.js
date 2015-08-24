@@ -14,9 +14,7 @@ var it = lab.it;
 var expect = Code.expect;
 
 
-
-
-describe('initialise', function () {
+describe('YALL', function () {
 
     it('should throw an error when constructed without new', function (done) {
 
@@ -44,30 +42,38 @@ describe('initialise', function () {
 
     it('should apply defaults object to options object to create settings object', function (done) {
 
+        process.env.DEBUG = true;
         var logger = new Logger({
             timestamp: 'YYYY-MM-DD HH:MM:SSS'
         });
         expect(logger.settings.colours).to.be.true();
         expect(logger.settings.timestamp).to.equal('YYYY-MM-DD HH:MM:SSS');
+        expect(logger.debugLevel).to.be.true();
+        logger.debugMode();
+        expect(logger.debugLevel).to.be.false();
+        logger.debugMode();
+        expect(logger.debugLevel).to.be.true();
         done();
 
     });
 
     it('should write messages to console', function (done) {
 
+        delete process.env.DEBUG;
         var logger = new Logger({
             timestamp: 'HH:mm DD-MM-YYYY'
         });
+        logger.debugMode();
         var time = Moment().format('HH:mm DD-MM-YYYY');
         StdMocks.use();
         logger.debug('hello');
-        process.stdout.write('\u001b[36m[DEBUG] - [' + time + '] - hello\u001b[39m\n');
+        process.stdout.write('\u001b[36m[DEBUG] [' + time + '] hello\u001b[39m\n');
         logger.info('hello');
-        process.stdout.write('\u001b[37m[INFO] - [' + time + '] - hello\u001b[39m\n');
+        process.stdout.write('\u001b[37m[INFO] [' + time + '] hello\u001b[39m\n');
         logger.warn('hello');
-        process.stderr.write('\u001b[33m[WARN] - [' + time + '] - hello\u001b[39m\n');
+        process.stderr.write('\u001b[33m[WARN] [' + time + '] hello\u001b[39m\n');
         logger.error('hello');
-        process.stderr.write('\u001b[31m[ERROR] - [' + time + '] - hello\u001b[39m\n');
+        process.stderr.write('\u001b[31m[ERROR] [' + time + '] hello\u001b[39m\n');
         StdMocks.restore();
         var test = StdMocks.flush();
         expect(test.stdout[0]).to.equal(test.stdout[1]);
@@ -87,11 +93,29 @@ describe('initialise', function () {
         });
         var time = Moment().format('HH:mm DD-MM-YYYY');
         StdMocks.use();
-        logger.debug('hello');
+        logger.info('hello');
         process.stdout.write('hello\n');
         StdMocks.restore();
         var test = StdMocks.flush();
         expect(test.stdout[0]).to.equal(test.stdout[1]);
+        done();
+
+    });
+
+    it('does not print debug messages when debug mode is disabled', function (done) {
+
+        var logger = new Logger({
+            timestamp: 'HH:mm DD-MM-YYYY',
+            colours: false,
+            format: ':data'
+        });
+        var time = Moment().format('HH:mm DD-MM-YYYY');
+        StdMocks.use();
+        logger.debug('hello');
+        process.stdout.write('hello\n');
+        StdMocks.restore();
+        var test = StdMocks.flush();
+        expect(test.stdout[0]).to.equal('hello\n');
         done();
 
     });
