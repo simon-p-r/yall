@@ -16,18 +16,6 @@ var expect = Code.expect;
 
 describe('YALL', function () {
 
-    it('should throw an error when constructed without new', function (done) {
-
-        var fn = function () {
-
-            var logger = Logger();
-        };
-
-        expect(fn).throws(Error, 'Logger must be constructed using new');
-        done();
-
-    });
-
     it('should throw an error when constructed without options object', function (done) {
 
         var fn = function () {
@@ -42,7 +30,7 @@ describe('YALL', function () {
 
     it('should apply defaults object to options object to create settings object', function (done) {
 
-        process.env.DEBUG = true;
+        process.env.NODE_ENV = 'debug';
         var logger = new Logger({
             timestamp: 'YYYY-MM-DD HH:MM:SSS'
         });
@@ -59,7 +47,7 @@ describe('YALL', function () {
 
     it('should write messages to console', function (done) {
 
-        delete process.env.DEBUG;
+        delete process.env.NODE_ENV;
         var logger = new Logger({
             timestamp: 'HH:mm DD-MM-YYYY'
         });
