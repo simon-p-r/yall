@@ -1,26 +1,26 @@
-// Load modules
+'use strict';
 
-var Code = require('code');
-var Lab = require('lab');
-var Moment = require('moment');
-var Logger = require('../lib/index.js');
-var StdMocks = require('std-mocks');
+const Code = require('code');
+const Lab = require('lab');
+const Moment = require('moment');
+const Logger = require('../lib/index.js');
+const StdMocks = require('std-mocks');
 
 
 // Set-up lab
-var lab = exports.lab = Lab.script();
-var describe = lab.describe;
-var it = lab.it;
-var expect = Code.expect;
+const lab = exports.lab = Lab.script();
+const describe = lab.describe;
+const it = lab.it;
+const expect = Code.expect;
 
 
-describe('YALL', function () {
+describe('YALL', () => {
 
-    it('should throw an error when constructed without options object', function (done) {
+    it('should throw an error when constructed without options object', (done) => {
 
-        var fn = function () {
+        const fn = function () {
 
-            var logger = new Logger();
+            new Logger();
         };
 
         expect(fn).throws(Error, 'Logger must be constructed with an options object');
@@ -28,10 +28,10 @@ describe('YALL', function () {
 
     });
 
-    it('should apply defaults object to options object to create settings object', function (done) {
+    it('should apply defaults object to options object to create settings object', (done) => {
 
         process.env.NODE_ENV = 'debug';
-        var logger = new Logger({
+        const logger = new Logger({
             timestamp: 'YYYY-MM-DD HH:MM:SSS'
         });
         expect(logger.settings.colours).to.be.true();
@@ -45,14 +45,14 @@ describe('YALL', function () {
 
     });
 
-    it('should write messages to console', function (done) {
+    it('should write messages to console', (done) => {
 
         delete process.env.NODE_ENV;
-        var logger = new Logger({
+        const logger = new Logger({
             timestamp: 'HH:mm DD-MM-YYYY'
         });
         logger.debugMode();
-        var time = Moment().format('HH:mm DD-MM-YYYY');
+        const time = Moment().format('HH:mm DD-MM-YYYY');
         StdMocks.use();
         logger.debug('hello');
         process.stdout.write('\u001b[36m[DEBUG] [' + time + '] hello\u001b[39m\n');
@@ -63,7 +63,7 @@ describe('YALL', function () {
         logger.error('hello');
         process.stderr.write('\u001b[31m[ERROR] [' + time + '] hello\u001b[39m\n');
         StdMocks.restore();
-        var test = StdMocks.flush();
+        const test = StdMocks.flush();
         expect(test.stdout[0]).to.equal(test.stdout[1]);
         expect(test.stdout[2]).to.equal(test.stdout[3]);
         expect(test.stderr[0]).to.equal(test.stderr[1]);
@@ -72,37 +72,35 @@ describe('YALL', function () {
 
     });
 
-    it('should strip colours from writes to console', function (done) {
+    it('should strip colours from writes to console', (done) => {
 
-        var logger = new Logger({
+        const logger = new Logger({
             timestamp: 'HH:mm DD-MM-YYYY',
             colours: false,
             format: ':data'
         });
-        var time = Moment().format('HH:mm DD-MM-YYYY');
         StdMocks.use();
         logger.info('hello');
         process.stdout.write('hello\n');
         StdMocks.restore();
-        var test = StdMocks.flush();
+        const test = StdMocks.flush();
         expect(test.stdout[0]).to.equal(test.stdout[1]);
         done();
 
     });
 
-    it('does not print debug messages when debug mode is disabled', function (done) {
+    it('does not print debug messages when debug mode is disabled', (done) => {
 
-        var logger = new Logger({
+        const logger = new Logger({
             timestamp: 'HH:mm DD-MM-YYYY',
             colours: false,
             format: ':data'
         });
-        var time = Moment().format('HH:mm DD-MM-YYYY');
         StdMocks.use();
         logger.debug('hello');
         process.stdout.write('hello\n');
         StdMocks.restore();
-        var test = StdMocks.flush();
+        const test = StdMocks.flush();
         expect(test.stdout[0]).to.equal('hello\n');
         done();
 

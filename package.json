@@ -1,10 +1,10 @@
 {
   "name": "yall",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "yet another logging logger",
   "main": "lib/index.js",
   "scripts": {
-    "test": "lab -a code -v -t 100 -l"
+    "test": "lab -a code -v -t 100 -L"
   },
   "engines": {
     "node": ">=4.0.0"
@@ -25,13 +25,13 @@
   "homepage": "https://github.com/simon-p-r/yall#readme",
   "dependencies": {
     "chalk": "^1.1.1",
-    "hoek": "^2.16.3",
-    "joi": "^6.9.1",
+    "hoek": "^3.0.1",
+    "joi": "^7.0.0",
     "moment": "^2.10.6"
   },
   "devDependencies": {
-    "code": "^1.5.0",
-    "lab": "^7.0.0",
+    "code": "^2.0.1",
+    "lab": "^7.3.0",
     "std-mocks": "^1.0.0"
   }
 }
