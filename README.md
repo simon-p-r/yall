@@ -3,8 +3,6 @@
 Console logger with colours, debugMode and format
 
 [![Build Status](https://travis-ci.org/simon-p-r/yall.svg?branch=master)](https://travis-ci.org/simon-p-r/yall)
-[![Current Version](https://img.shields.io/npm/v/yall.svg)](https://www.npmjs.org/package/yall)
-![devDependencies](http://img.shields.io/david/dev/simon-p-r/yall.svg)
 
 
 ### Install
