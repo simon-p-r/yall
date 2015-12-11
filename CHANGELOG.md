@@ -1,5 +1,7 @@
 ##Changelog
 
+> 0.2.1 - updated dependencies and removed unneeded methods and objects on constructor
+
 > 0.2.0 - updated dependencies and removed unneeded code
 
 > 0.1.0 - made changes to module so that it can now only work on node version 4 or higher, use  es6 features, removed unneeded test and added strict mode

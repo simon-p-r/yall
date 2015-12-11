@@ -34,8 +34,6 @@ describe('YALL', () => {
         const logger = new Logger({
             timestamp: 'YYYY-MM-DD HH:MM:SSS'
         });
-        expect(logger.settings.colours).to.be.true();
-        expect(logger.settings.timestamp).to.equal('YYYY-MM-DD HH:MM:SSS');
         expect(logger.debugLevel).to.be.true();
         logger.debugMode();
         expect(logger.debugLevel).to.be.false();
