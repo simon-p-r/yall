@@ -17,15 +17,15 @@ npm install yall
 
 ```js
 
-var Logger = require('yall');
-var options = {
+const Logger = require('yall');
+const options = {
 		timestamp: 'YYYY-MM-DD-HH:mm:SSS', // format of timedate from momentjs
-		format: ':level - :time - :data', // to change appearance of message and order they appear in
+		format: ':level - :ts - :data', // to change appearance of message and order they appear in
 		colours: false // strips colours from message
 
 };
-var logger = new Logger(options)
-logger.debug('hello'); // by default debug won't print to console unless process.env.DEBUG is set in environment or debugMode method is called like below
+const logger = new Logger(options);
+logger.debug('hello'); // by default debug won't print to console unless process.env.NODE_ENV is set to 'debug' or debugMode method is called like below
 logger.debugMode(); // toggles debug mode on
 logger.debug('hello'); // should print in Chalk yellow [DEBUG - 2015-06-01-09:02:123 - hello]
 

@@ -1,6 +1,6 @@
 {
   "name": "yall",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "yet another logging logger",
   "main": "lib/index.js",
   "scripts": {

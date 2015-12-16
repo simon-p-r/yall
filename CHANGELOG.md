@@ -1,5 +1,7 @@
 ##Changelog
 
+> 0.2.3 - updated docs
+
 > 0.2.2 - removed badges from readme
 
 > 0.2.1 - updated dependencies and removed unneeded methods and objects on constructor
