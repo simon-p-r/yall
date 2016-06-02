@@ -1,5 +1,7 @@
 ##Changelog
 
+> 0.3.0 - update deps, enabled v6 of node in travis and added coveralls
+
 > 0.2.3 - updated docs
 
 > 0.2.2 - removed badges from readme
