@@ -3,3 +3,4 @@ test.js
 .idea
 npm-debug.log
 coverage.html
+.vscode

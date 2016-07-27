@@ -43,6 +43,35 @@ describe('YALL', () => {
 
     });
 
+
+    it('should apply moduleName option of present', (done) => {
+
+        const logger = new Logger({
+            timestamp: 'YYYY-MM-DD HH:MM',
+            moduleName: 'testApp',
+            format: ':level :module :ts :data'
+        });
+
+        const time = Moment().format('YYYY-MM-DD HH:MM');
+        StdMocks.use();
+        logger.debug('hello');
+        process.stdout.write('\u001b[36m[DEBUG] [testApp] [' + time + '] hello\u001b[39m\n');
+        logger.info('hello');
+        process.stdout.write('\u001b[37m[INFO] [testApp] [' + time + '] hello\u001b[39m\n');
+        logger.warn('hello');
+        process.stderr.write('\u001b[33m[WARN] [testApp] [' + time + '] hello\u001b[39m\n');
+        logger.error('hello');
+        process.stderr.write('\u001b[31m[ERROR] [testApp] [' + time + '] hello\u001b[39m\n');
+        StdMocks.restore();
+        const test = StdMocks.flush();
+        expect(test.stdout[0]).to.equal(test.stdout[1]);
+        expect(test.stdout[2]).to.equal(test.stdout[3]);
+        expect(test.stderr[0]).to.equal(test.stderr[1]);
+        expect(test.stderr[2]).to.equal(test.stderr[3]);
+        done();
+
+    });
+
     it('should write messages to console', (done) => {
 
         delete process.env.NODE_ENV;
