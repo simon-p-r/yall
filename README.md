@@ -1,5 +1,7 @@
 # yall - yet another logging logger
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/simon-p-r/yall.svg)](https://greenkeeper.io/)
+
 [![build status](https://travis-ci.org/simon-p-r/yall.svg?branch=master)](https://travis-ci.org/simon-p-r/yall)
 [![Current Version](https://img.shields.io/npm/v/yall.svg?maxAge=1000)](https://www.npmjs.org/package/yall)
 [![dependency Status](https://img.shields.io/david/simon-p-r/yall.svg?maxAge=1000)](https://david-dm.org/simon-p-r/yall)
